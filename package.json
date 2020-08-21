@@ -1,0 +1,35 @@
+{
+  "name": "just-tech-news",
+  "version": "1.0.0",
+  "description": "Allows users to post articles, vote on articles, and comment on articles.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmcanall/just-tech-news.git"
+  },
+  "keywords": [
+    "sqlite3",
+    "sql",
+    "database",
+    "sqlize",
+    "js",
+    "javascript",
+    "backend"
+  ],
+  "author": "Nathan McAnally",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmcanall/just-tech-news/issues"
+  },
+  "homepage": "https://github.com/nmcanall/just-tech-news#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4"
+  }
+}
