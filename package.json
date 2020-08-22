@@ -2,7 +2,7 @@
   "name": "just-tech-news",
   "version": "1.0.0",
   "description": "Allows users to post articles, vote on articles, and comment on articles.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "npm run test",
     "start": "node server.js"
