@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Post, User} = require('../../models');
+const {Post, User, Vote} = require('../../models');
 
 // GET /api/posts
 router.get('/', (req, res) => {
@@ -53,6 +53,11 @@ router.post("/", (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+// PUT /api/posts/upvote
+router.put("/upvote", (req, res) => {
+
 });
 
 // PUT /api/posts/id
