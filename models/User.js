@@ -19,7 +19,8 @@ User.init(
         // Define username column
         username: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
 
         // Define email column
