@@ -3,7 +3,14 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Create User model
-class User extends Model {}
+class User extends Model {
+
+    // Allow ability to check password on a single instance of User
+    checkPassword(loginPw) {
+        return bcrpyt.compareSync(loginPw, this.password);
+    }
+
+}
 
 // Define table columns and configuration
 User.init(

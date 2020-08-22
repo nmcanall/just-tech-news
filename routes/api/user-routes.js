@@ -47,6 +47,30 @@ router.post("/", (req, res) => {
         });
 });
 
+// POST for login at /api/users/login
+router.post("/login", (req, res) => {
+    // Expects {email: 'lernantino@gmail.com', password: 'password1234'}
+
+    // Check for email first
+    User.findOne({
+        where: {email: req.body.email}
+    }).then(dbUserData => {
+        // If email doesn't exist, no need to decrypt and check password
+        if(!dbUserData) {
+            res.status(400).json({message: "No user with that email address"});
+            return;
+        }
+
+        // Check given password matches password in database for given email
+        const validPassword = dbUserData.checkPassword(req.body.password);
+        if(!validPassword) {
+            res.status(400).json({message: "Sorry, that is an incorrect password"});
+            return;
+        }
+        res.json({user: dbUserData, message: "You are now logged in"});
+    });
+});
+
 // PUT /api/users/id
 router.put("/:id", (req, res) => {
     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
