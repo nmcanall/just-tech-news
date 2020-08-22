@@ -1,9 +1,7 @@
 const {Model, DataTypes} = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Vote extends Model {
-
-}
+class Vote extends Model {}
 
 Vote.init(
     // Vote table columns have ID, User ID, and the Post ID the user voted on
@@ -39,3 +37,5 @@ Vote.init(
         modelName: "vote"
     }
 )
+
+module.exports = Vote;
