@@ -1,6 +1,7 @@
 const User = require('./User');
 const Post = require('./Post');
 const Vote = require('./Vote');
+const Comment = require('./Comment');
 
 // Define one user to many posts framework
 User.hasMany(Post, {
@@ -46,4 +47,24 @@ Post.hasMany(Vote, {
     foreignKey: "post_id"
 });
 
-module.exports = {User, Post, Vote};
+// Define that a Comment can be made by a single User
+Comment.belongsTo(User, {
+    foreignKey: "user_id"
+});
+
+// Define that a Comment can be for a single Post
+Comment.belongsTo(Post, {
+    foreignKey: "post_id"
+});
+
+// Define that a User can Comment on many post
+User.hasMany(Comment, {
+    foreignKey: "user_id"
+});
+
+// Define that a Post can have many Comments
+Post.hasMany(Comment, {
+    foreignKey: "post_id"
+});
+
+module.exports = {User, Post, Vote, Comment};
