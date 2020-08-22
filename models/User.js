@@ -1,3 +1,4 @@
+const bcrpyt = require("bcrypt");
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -46,6 +47,19 @@ User.init(
     
     // Table configuration options
     {
+        // Hooks object for password hashing
+        hooks: {
+            // Create password hashing BEFORE User is created
+            async beforeCreate(newUserData) {
+                newUserData.password = await bcrpyt.hash(newUserData.password, 10);
+                return newUserData;
+            },
+            // Create password hashing when a User changes a password
+            async beforeUpdate(updatedUserData) {
+                updatedUserData.password = await bcrpyt.hash(updatedUserData.password, 10);
+                return updatedUserData;
+            }
+        },
         // sequelize connection
         sequelize,
         // Don't build createdAt/updatedAt fields

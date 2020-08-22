@@ -4,7 +4,7 @@ const { User } = require('../../models');
 // GET /api/users
 router.get('/', (req, res) => {
     User.findAll({
-        attributes: {exclude: ["password"]}
+        // attributes: {exclude: ["password"]}
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.get("/:id", (req, res) => {
     User.findOne({
         where: {id: req.params.id},
-        attributes: {exclude: ["password"]}
+        // attributes: {exclude: ["password"]}
         
     })
         .then(dbUserData => {
@@ -53,9 +53,8 @@ router.put("/:id", (req, res) => {
 
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
-        where: {
-            id: req.params.id
-        }
+        where: {id: req.params.id},
+        individualHooks: true
     })
         .then(dbUserData => {
             if(!dbUserData[0]) {
