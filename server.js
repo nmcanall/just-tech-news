@@ -1,12 +1,23 @@
+// Front-end path
+const path = require('path');
+const exphbs = require("express-handlebars");
+const hbs = exphbs.create({});
+
+// Back-end dependencies
 const express = require('express');
-const routes = require('./routes');
+const routes = require('./controllers');
 const sequelize = require('./config/connection');
 
 // Build server
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// App middleware
+// Front-end middleware
+app.use(express.static(path.join(__dirname, 'public')));
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+
+// Back-end middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
