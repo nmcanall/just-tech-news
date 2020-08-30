@@ -21,6 +21,22 @@ app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Session dependencies
+const session = require("express-session");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const sess = {
+    secret: "Super secret secret",
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+};
+
+// Session middleware
+app.use(session(sess));
+
 // Turn on routes
 app.use(routes);
 
