@@ -4,7 +4,7 @@
   "description": "Allows users to post articles, vote on articles, and comment on articles.",
   "main": "server.js",
   "scripts": {
-    "test": "npm run test",
+    "test": "jest",
     "start": "node server.js"
   },
   "repository": {
@@ -35,5 +35,8 @@
     "express-session": "^1.17.1",
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.4"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
   }
 }
